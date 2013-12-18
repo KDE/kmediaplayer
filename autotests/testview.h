@@ -35,7 +35,8 @@ class TestView : public KMediaPlayer::View
 public:
     TestView(QWidget *parent) : View(parent) {};
 
-    void setVideoWidgetWrapper(QWidget *videoWidget) {
+    void setVideoWidgetWrapper(QWidget *videoWidget)
+    {
         // this is protected
         setVideoWidget(videoWidget);
     }

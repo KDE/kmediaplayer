@@ -127,5 +127,4 @@ void KMediaPlayerAdaptor::stop()
     //static_cast<YourObjectType *>(parent())->stop();
 }
 
-
 #include "moc_kmediaplayeradaptor_p.cpp"

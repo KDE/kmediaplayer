@@ -35,17 +35,33 @@ class TestPlayer : public KMediaPlayer::Player
 public:
     TestPlayer(QObject *parent) : Player(parent) {}
 
-    KMediaPlayer::View *view() { return 0; }
+    KMediaPlayer::View *view()
+    {
+        return 0;
+    }
     void pause() {}
     void play() {}
     void stop() {}
     void seek(qlonglong) {}
-    bool isSeekable() const { return false; }
-    qlonglong position() const { return 0L; }
-    bool hasLength() const { return false; }
-    qlonglong length() const { return 0L; }
+    bool isSeekable() const
+    {
+        return false;
+    }
+    qlonglong position() const
+    {
+        return 0L;
+    }
+    bool hasLength() const
+    {
+        return false;
+    }
+    qlonglong length() const
+    {
+        return 0L;
+    }
 
-    void setStateWrapper(int state) {
+    void setStateWrapper(int state)
+    {
         // this is protected
         setState(state);
     }

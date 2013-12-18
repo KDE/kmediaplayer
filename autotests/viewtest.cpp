@@ -33,10 +33,12 @@ class ViewTest : public QWidget
     Q_OBJECT
 
 private Q_SLOTS:
-    void init() {
+    void init()
+    {
         view = new TestView(this);
     }
-    void cleanup() {
+    void cleanup()
+    {
         delete view;
         view = 0;
     }
@@ -52,25 +54,29 @@ private:
 
 using namespace KMediaPlayer;
 
-void ViewTest::testParent() {
+void ViewTest::testParent()
+{
     QCOMPARE(view->parent(), this);
 }
 
-void ViewTest::testDefaultVideoWidget() {
-    QCOMPARE(view->videoWidget(), static_cast<QWidget*>(0));
+void ViewTest::testDefaultVideoWidget()
+{
+    QCOMPARE(view->videoWidget(), static_cast<QWidget *>(0));
 }
 
-void ViewTest::testSetVideoWidget() {
+void ViewTest::testSetVideoWidget()
+{
     QScopedPointer<QWidget> widget(new QWidget(this));
 
     view->setVideoWidgetWrapper(widget.data());
     QCOMPARE(view->videoWidget(), widget.data());
 
     view->setVideoWidgetWrapper(0);
-    QCOMPARE(view->videoWidget(), static_cast<QWidget*>(0));
+    QCOMPARE(view->videoWidget(), static_cast<QWidget *>(0));
 }
 
-void ViewTest::testSetButtons() {
+void ViewTest::testSetButtons()
+{
     QSignalSpy spy(view, SIGNAL(buttonsChanged(int)));
 
     int expButtons = (int)(View::Stop | View::Pause);
@@ -121,7 +127,6 @@ void ViewTest::testSetButtons() {
     view->hideButton((int)(View::Play));
     QCOMPARE(view->buttons(), expButtons);
 }
-
 
 QTEST_MAIN(ViewTest)
 

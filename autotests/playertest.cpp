@@ -32,10 +32,12 @@ class PlayerTest : public QObject
     Q_OBJECT
 
 private Q_SLOTS:
-    void init() {
+    void init()
+    {
         player = new TestPlayer(this);
     }
-    void cleanup() {
+    void cleanup()
+    {
         delete player;
         player = 0;
     }
@@ -52,19 +54,23 @@ private:
 
 using namespace KMediaPlayer;
 
-void PlayerTest::testParent() {
+void PlayerTest::testParent()
+{
     QCOMPARE(player->parent(), this);
 }
 
-void PlayerTest::testDefaultState() {
+void PlayerTest::testDefaultState()
+{
     QCOMPARE(player->state(), (int)Player::Empty);
 }
 
-void PlayerTest::testDefaultLooping() {
+void PlayerTest::testDefaultLooping()
+{
     QCOMPARE(player->isLooping(), false);
 }
 
-void PlayerTest::testSetState() {
+void PlayerTest::testSetState()
+{
     QSignalSpy spy(player, SIGNAL(stateChanged(int)));
     player->setStateWrapper((int)Player::Play);
     QCOMPARE(spy.count(), 1);
@@ -81,7 +87,8 @@ void PlayerTest::testSetState() {
     QCOMPARE(player->state(), (int)Player::Empty);
 }
 
-void PlayerTest::testSetLooping() {
+void PlayerTest::testSetLooping()
+{
     QSignalSpy spy(player, SIGNAL(loopingChanged(bool)));
     player->setLooping(true);
     QCOMPARE(spy.count(), 1);
