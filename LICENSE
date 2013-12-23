@@ -1,0 +1,8 @@
+All the code in this framework is under the X11 license
+(http://techbase.kde.org/Policies/Licensing_Policy#X11_License) and, as
+such, the source code for this framework can be distributed according to
+that license.
+
+However, once built, the library and test executables will link against
+LGPL libraries (and potentially GPL ones), and so any binary package
+will be subject to those licenses.
