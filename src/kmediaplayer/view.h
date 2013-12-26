@@ -34,6 +34,9 @@ namespace KMediaPlayer
 class KMEDIAPLAYER_EXPORT View : public QWidget
 {
     Q_OBJECT
+    Q_FLAGS(Button Buttons)
+    Q_PROPERTY(Buttons buttons READ buttons WRITE setButtons NOTIFY buttonsChanged)
+    Q_PROPERTY(QWidget* videoWidget READ videoWidget)
 
 public:
     /** Your typical QWidget constructor. */
@@ -53,9 +56,10 @@ public:
         /** Show all buttons. */
         All = 255
     };
+    Q_DECLARE_FLAGS(Buttons, Button)
 
     /** Return which buttons are being displayed. */
-    int buttons();
+    Buttons buttons();
 
     /** Return the QWidget in which video is displayed.
         May Return 0L if there is none. */
@@ -63,20 +67,20 @@ public:
 
 public Q_SLOTS:
     /** Set which buttons to display. See Button. */
-    void setButtons(int buttons);
+    void setButtons(Buttons Buttons);
 
     /** Returns if a particular button is being displayed. */
-    bool button(int button);
+    bool button(Button button);
     /** Display a particular button. */
-    void showButton(int button);
+    void showButton(Button button);
     /** Stop displaying a particular button. */
-    void hideButton(int button);
+    void hideButton(Button button);
     /** Toggle the display of a particular button. */
-    void toggleButton(int button);
+    void toggleButton(Button button);
 
 Q_SIGNALS:
     /** Emitted when the set of displayed buttons changes. */
-    void buttonsChanged(int buttons);
+    void buttonsChanged(KMediaPlayer::View::Buttons buttons);
 
 protected:
     /** The implementing view should set the widget in which
@@ -91,5 +95,9 @@ private:
 };
 
 }
+
+Q_DECLARE_METATYPE(KMediaPlayer::View::Button)
+Q_DECLARE_METATYPE(KMediaPlayer::View::Buttons)
+Q_DECLARE_OPERATORS_FOR_FLAGS(KMediaPlayer::View::Buttons)
 
 #endif

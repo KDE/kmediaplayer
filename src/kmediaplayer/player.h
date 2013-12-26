@@ -47,12 +47,13 @@ namespace KMediaPlayer
 class KMEDIAPLAYER_EXPORT Player : public KParts::ReadOnlyPart
 {
     Q_OBJECT
+    Q_ENUMS(State)
     Q_PROPERTY(bool hasLength READ hasLength)
     Q_PROPERTY(qlonglong length READ length)
     Q_PROPERTY(bool looping READ isLooping WRITE setLooping)
     Q_PROPERTY(qlonglong position READ position)
     Q_PROPERTY(bool seekable READ isSeekable)
-    Q_PROPERTY(int state READ state WRITE setState)
+    Q_PROPERTY(State state READ state WRITE setState NOTIFY stateChanged)
 
 public:
     /** This constructor is what to use when no GUI is required, as in the
@@ -126,19 +127,19 @@ public:
         Play
     };
     /** Return the current state of the player. */
-    int state() const;
+    State state() const;
 Q_SIGNALS:
     /** Emitted when the state changes. */
-    void stateChanged(int newState);
+    void stateChanged(KMediaPlayer::Player::State newState);
 
 protected Q_SLOTS:
     /** Implementers use this to control what users see as the current
      * state.*/
-    void setState(int state);
+    void setState(State state);
 
 protected:
     /* Enable the stateChanged(QString&, ...) method that was hidden by
-       the stateChanged(int) signal */
+       the stateChanged(State) signal */
     using KXMLGUIClient::stateChanged;
 
 private:
@@ -147,5 +148,7 @@ private:
 };
 
 }
+
+Q_DECLARE_METATYPE(KMediaPlayer::Player::State)
 
 #endif

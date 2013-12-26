@@ -60,7 +60,7 @@ public:
         return 0L;
     }
 
-    void setStateWrapper(int state)
+    void setStateWrapper(State state)
     {
         // this is protected
         setState(state);

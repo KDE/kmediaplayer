@@ -61,7 +61,7 @@ void PlayerTest::testParent()
 
 void PlayerTest::testDefaultState()
 {
-    QCOMPARE(player->state(), (int)Player::Empty);
+    QCOMPARE(player->state(), Player::Empty);
 }
 
 void PlayerTest::testDefaultLooping()
@@ -71,20 +71,20 @@ void PlayerTest::testDefaultLooping()
 
 void PlayerTest::testSetState()
 {
-    QSignalSpy spy(player, SIGNAL(stateChanged(int)));
-    player->setStateWrapper((int)Player::Play);
+    QSignalSpy spy(player, SIGNAL(stateChanged(KMediaPlayer::Player::State)));
+    player->setStateWrapper(Player::Play);
     QCOMPARE(spy.count(), 1);
     QList<QVariant> arguments = spy.takeFirst();
     QCOMPARE(arguments.count(), 1);
-    QCOMPARE(arguments.at(0).toInt(), (int)Player::Play);
-    QCOMPARE(player->state(), (int)Player::Play);
+    QCOMPARE(arguments.at(0).value<Player::State>(), Player::Play);
+    QCOMPARE(player->state(), Player::Play);
 
-    player->setStateWrapper((int)Player::Empty);
+    player->setStateWrapper(Player::Empty);
     QCOMPARE(spy.count(), 1);
     arguments = spy.takeFirst();
     QCOMPARE(arguments.count(), 1);
-    QCOMPARE(arguments.at(0).toInt(), (int)Player::Empty);
-    QCOMPARE(player->state(), (int)Player::Empty);
+    QCOMPARE(arguments.at(0).value<Player::State>(), Player::Empty);
+    QCOMPARE(player->state(), Player::Empty);
 }
 
 void PlayerTest::testSetLooping()

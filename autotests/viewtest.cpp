@@ -77,54 +77,54 @@ void ViewTest::testSetVideoWidget()
 
 void ViewTest::testSetButtons()
 {
-    QSignalSpy spy(view, SIGNAL(buttonsChanged(int)));
+    QSignalSpy spy(view, SIGNAL(buttonsChanged(KMediaPlayer::View::Buttons)));
 
-    int expButtons = (int)(View::Stop | View::Pause);
+    View::Buttons expButtons = View::Stop | View::Pause;
     view->setButtons(expButtons);
     QCOMPARE(spy.count(), 1);
     QList<QVariant> arguments = spy.takeFirst();
     QCOMPARE(arguments.count(), 1);
-    QCOMPARE(arguments.at(0).toInt(), expButtons);
+    QCOMPARE(arguments.at(0).value<View::Buttons>(), expButtons);
     QCOMPARE(view->buttons(), expButtons);
 
-    expButtons |= (int)View::Play;
-    view->toggleButton((int)(View::Play));
+    expButtons |= View::Play;
+    view->toggleButton(View::Play);
     QCOMPARE(spy.count(), 1);
     arguments = spy.takeFirst();
     QCOMPARE(arguments.count(), 1);
-    QCOMPARE(arguments.at(0).toInt(), expButtons);
+    QCOMPARE(arguments.at(0).value<View::Buttons>(), expButtons);
     QCOMPARE(view->buttons(), expButtons);
 
-    expButtons = (int)(View::Stop | View::Pause);
-    view->toggleButton((int)(View::Play));
+    expButtons = View::Stop | View::Pause;
+    view->toggleButton(View::Play);
     QCOMPARE(spy.count(), 1);
     arguments = spy.takeFirst();
     QCOMPARE(arguments.count(), 1);
-    QCOMPARE(arguments.at(0).toInt(), expButtons);
+    QCOMPARE(arguments.at(0).value<View::Buttons>(), expButtons);
     QCOMPARE(view->buttons(), expButtons);
 
-    expButtons = (int)View::Stop;
-    view->hideButton((int)(View::Pause));
+    expButtons = View::Stop;
+    view->hideButton(View::Pause);
     QCOMPARE(spy.count(), 1);
     arguments = spy.takeFirst();
     QCOMPARE(arguments.count(), 1);
-    QCOMPARE(arguments.at(0).toInt(), expButtons);
+    QCOMPARE(arguments.at(0).value<View::Buttons>(), expButtons);
     QCOMPARE(view->buttons(), expButtons);
 
-    expButtons |= (int)View::Seeker;
-    view->showButton((int)(View::Seeker));
+    expButtons |= View::Seeker;
+    view->showButton(View::Seeker);
     QCOMPARE(spy.count(), 1);
     arguments = spy.takeFirst();
     QCOMPARE(arguments.count(), 1);
-    QCOMPARE(arguments.at(0).toInt(), expButtons);
+    QCOMPARE(arguments.at(0).value<View::Buttons>(), expButtons);
     QCOMPARE(view->buttons(), expButtons);
 
     // showing an already-visible button
-    view->showButton((int)(View::Stop));
+    view->showButton(View::Stop);
     QCOMPARE(view->buttons(), expButtons);
 
     // hiding an already-hidden button
-    view->hideButton((int)(View::Play));
+    view->hideButton(View::Play);
     QCOMPARE(view->buttons(), expButtons);
 }
 

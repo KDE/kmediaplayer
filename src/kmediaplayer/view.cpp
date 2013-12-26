@@ -28,12 +28,24 @@ class KMediaPlayer::View::Private
 public:
     Private()
         : videoWidget(0L)
-        , currentButtons((int)All)
-    {}
+        , currentButtons(All)
+    {
+        if (!buttonEnumRegistered) {
+            buttonEnumRegistered = qRegisterMetaType<KMediaPlayer::View::Button>("KMediaPlayer::View::Button");
+        }
+        if (!buttonsFlagsRegistered) {
+            buttonsFlagsRegistered = qRegisterMetaType<KMediaPlayer::View::Buttons>("KMediaPlayer::View::Buttons");
+        }
+    }
 
     QWidget *videoWidget;
-    int currentButtons;
+    Buttons currentButtons;
+
+    static bool buttonEnumRegistered;
+    static bool buttonsFlagsRegistered;
 };
+bool KMediaPlayer::View::Private::buttonEnumRegistered = false;
+bool KMediaPlayer::View::Private::buttonsFlagsRegistered = false;
 
 KMediaPlayer::View::View(QWidget *parent)
     : QWidget(parent)
@@ -46,12 +58,12 @@ KMediaPlayer::View::~View()
     delete d;
 }
 
-int KMediaPlayer::View::buttons()
+KMediaPlayer::View::Buttons KMediaPlayer::View::buttons()
 {
     return d->currentButtons;
 }
 
-void KMediaPlayer::View::setButtons(int buttons)
+void KMediaPlayer::View::setButtons(Buttons buttons)
 {
     if (buttons != d->currentButtons) {
         d->currentButtons = buttons;
@@ -59,22 +71,22 @@ void KMediaPlayer::View::setButtons(int buttons)
     }
 }
 
-bool KMediaPlayer::View::button(int b)
+bool KMediaPlayer::View::button(Button b)
 {
     return d->currentButtons & b;
 }
 
-void KMediaPlayer::View::showButton(int b)
+void KMediaPlayer::View::showButton(Button b)
 {
     setButtons(d->currentButtons | b);
 }
 
-void KMediaPlayer::View::hideButton(int b)
+void KMediaPlayer::View::hideButton(Button b)
 {
     setButtons(d->currentButtons & ~b);
 }
 
-void KMediaPlayer::View::toggleButton(int b)
+void KMediaPlayer::View::toggleButton(Button b)
 {
     setButtons(d->currentButtons ^ b);
 }

@@ -30,11 +30,18 @@ public:
     Private()
         : currentLooping(false)
         , currentState(Empty)
-    {}
+    {
+        if (!stateEnumRegistered) {
+            stateEnumRegistered = qRegisterMetaType<KMediaPlayer::Player::State>("KMediaPlayer::Player::State");
+        }
+    }
 
     bool currentLooping;
     State currentState;
+
+    static bool stateEnumRegistered;
 };
+bool KMediaPlayer::Player::Private::stateEnumRegistered = false;
 
 KMediaPlayer::Player::Player(QWidget *, const char *, QObject *parent)
     : KParts::ReadOnlyPart(parent)
@@ -68,16 +75,16 @@ bool KMediaPlayer::Player::isLooping() const
     return d->currentLooping;
 }
 
-void KMediaPlayer::Player::setState(int s)
+void KMediaPlayer::Player::setState(State s)
 {
     if (s != d->currentState) {
-        d->currentState = (State)s;
+        d->currentState = s;
         emit stateChanged(s);
     }
 }
 
-int KMediaPlayer::Player::state() const
+KMediaPlayer::Player::State KMediaPlayer::Player::state() const
 {
-    return (int)d->currentState;
+    return d->currentState;
 }
 
