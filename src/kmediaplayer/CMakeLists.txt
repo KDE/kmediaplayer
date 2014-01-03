@@ -9,7 +9,7 @@ generate_export_header(KF5MediaPlayer BASE_NAME KMediaPlayer)
 add_library(KF5::MediaPlayer ALIAS KF5MediaPlayer)
 
 # Apps must include <KMediaPlayer/File> or <kmediaplayer/file.h>
-target_include_directories(KF5MediaPlayer INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>")
+target_include_directories(KF5MediaPlayer INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}>/KMediaPlayer")
 
 target_link_libraries(KF5MediaPlayer PUBLIC
    Qt5::Widgets
@@ -30,6 +30,7 @@ ecm_generate_headers(
   View
 
   MODULE_NAME KMediaPlayer
+  PREFIX KMediaPlayer
   REQUIRED_HEADERS KMediaPlayer_HEADERS
 )
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KMediaPlayer DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
@@ -41,7 +42,7 @@ install(TARGETS KF5MediaPlayer
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kmediaplayer_export.h
   ${KMediaPlayer_HEADERS}
-  DESTINATION ${INCLUDE_INSTALL_DIR}/kmediaplayer
+  DESTINATION ${INCLUDE_INSTALL_DIR}/KMediaPlayer/kmediaplayer
   COMPONENT Devel
 )
 
