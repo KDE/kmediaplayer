@@ -26,7 +26,7 @@
 #ifndef TESTVIEW_H
 #define TESTVIEW_H
 
-#include <kmediaplayer/view.h>
+#include <view.h>
 
 class TestView : public KMediaPlayer::View
 {

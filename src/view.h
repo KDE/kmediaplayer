@@ -25,7 +25,7 @@
 #define KMEDIAPLAYERVIEW_H
 
 #include <QWidget>
-#include <kmediaplayer/kmediaplayer_export.h>
+#include "kmediaplayer_export.h"
 
 namespace KMediaPlayer
 {

@@ -26,7 +26,7 @@
 #ifndef TESTPLAYER_H
 #define TESTPLAYER_H
 
-#include <kmediaplayer/player.h>
+#include <player.h>
 
 class TestPlayer : public KMediaPlayer::Player
 {

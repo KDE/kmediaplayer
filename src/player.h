@@ -25,9 +25,9 @@
 #define KMEDIAPLAYERPLAYER_H
 
 #include <kparts/part.h>
-#include <kmediaplayer/view.h>
+#include "view.h"
 
-#include <kmediaplayer/kmediaplayer_export.h>
+#include "kmediaplayer_export.h"
 
 /** KMediaPlayer contains an interface to reusable media player components.
 */
