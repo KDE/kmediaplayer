@@ -24,7 +24,7 @@
 #ifndef KMEDIAPLAYERPLAYER_H
 #define KMEDIAPLAYERPLAYER_H
 
-#include <kparts/part.h>
+#include <kparts/readonlypart.h>
 #include "view.h"
 
 #include "kmediaplayer_export.h"
