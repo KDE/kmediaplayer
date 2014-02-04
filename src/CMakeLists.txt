@@ -14,7 +14,6 @@ target_include_directories(KF5MediaPlayer INTERFACE "$<INSTALL_INTERFACE:${INCLU
 target_link_libraries(KF5MediaPlayer PUBLIC
    Qt5::Widgets
    KF5::Parts
-   KF5::I18n
 )
 target_link_libraries(KF5MediaPlayer PRIVATE
    KF5::XmlGui
