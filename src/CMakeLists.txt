@@ -24,15 +24,15 @@ set_target_properties(KF5MediaPlayer PROPERTIES
    EXPORT_NAME MediaPlayer
 )
 
-ecm_generate_headers(
+ecm_generate_headers(KMediaPlayer_CamelCase_HEADERS
+  HEADER_NAMES
   Player
   View
 
-  MODULE_NAME KMediaPlayer
   PREFIX KMediaPlayer
   REQUIRED_HEADERS KMediaPlayer_HEADERS
 )
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KMediaPlayer DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
+install(FILES ${KMediaPlayer_CamelCase_HEADERS} DESTINATION ${INCLUDE_INSTALL_DIR}/KMediaPlayer/KMediaPlayer COMPONENT Devel)
 
 install(TARGETS KF5MediaPlayer
         EXPORT KF5MediaPlayerTargets
