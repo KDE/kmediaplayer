@@ -60,7 +60,7 @@ add_subdirectory(autotests)
 # Config.cmake stuff
 #
 set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KF5MediaPlayer")
-configure_package_config_file(
+ecm_configure_package_config_file(
    "${CMAKE_CURRENT_SOURCE_DIR}/KF5MediaPlayerConfig.cmake.in"
    "${CMAKE_CURRENT_BINARY_DIR}/KF5MediaPlayerConfig.cmake"
    INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR})
