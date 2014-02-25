@@ -28,7 +28,7 @@ ecm_setup_version(${KF5_VERSION}
    VARIABLE_PREFIX KMEDIAPLAYER
    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kmediaplayer_version.h"
    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5MediaPlayerConfigVersion.cmake"
-)
+   SOVERSION 5)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kmediaplayer_version.h
         DESTINATION ${INCLUDE_INSTALL_DIR}
