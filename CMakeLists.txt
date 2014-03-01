@@ -6,7 +6,7 @@ project(KMediaPlayer)
 #
 # CMake stuff from ECM
 #
-find_package(ECM 0.0.10 REQUIRED NO_MODULE)
+find_package(ECM 0.0.11 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 include(KDEInstallDirs)
@@ -19,7 +19,7 @@ include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMPackageConfigHelpers)
 
-set(KF5_VERSION "4.96.0")
+set(KF5_VERSION "4.97.0")
 
 #
 # Version info
