@@ -38,9 +38,9 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kmediaplayer_version.h
 #
 # Dependencies
 #
-set(QT_REQUIRED_VERSION 5.2.0)
-find_package(Qt5DBus ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE)
-find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE)
+set(REQUIRED_QT_VERSION 5.2.0)
+find_package(Qt5DBus ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
+find_package(Qt5Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 
 find_package(KF5Parts ${KF5_VERSION} REQUIRED)
 find_package(KF5XmlGui ${KF5_VERSION} REQUIRED)
