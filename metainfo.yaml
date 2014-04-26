@@ -1,1 +1,9 @@
+maintainer: alexmerry
+description: Plugin interface for media player features
 tier: 3
+type: integration
+platforms:
+    - name: All
+portingAid: true
+deprecated: true
+release: true
