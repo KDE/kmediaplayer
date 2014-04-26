@@ -19,7 +19,8 @@ include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMPackageConfigHelpers)
 
-set(KF5_VERSION "4.98.0")
+set(KF5_VERSION "4.98.0") # handled by release scripts # handled by release scripts
+set(KF5_DEP_VERSION "4.98.0") # handled by release scripts
 
 #
 # Version info
@@ -42,8 +43,8 @@ set(REQUIRED_QT_VERSION 5.2.0)
 find_package(Qt5DBus ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 find_package(Qt5Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 
-find_package(KF5Parts ${KF5_VERSION} REQUIRED)
-find_package(KF5XmlGui ${KF5_VERSION} REQUIRED)
+find_package(KF5Parts ${KF5_DEP_VERSION} REQUIRED)
+find_package(KF5XmlGui ${KF5_DEP_VERSION} REQUIRED)
 
 
 #
