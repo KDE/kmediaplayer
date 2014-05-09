@@ -1,5 +1,6 @@
 find_package(Qt5Test ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 include(ECMMarkAsTest)
+include(ECMAddTests)
 
 macro(KMEDIAPLAYER_EXECUTABLE_TESTS)
     foreach(_testname ${ARGN})
@@ -9,17 +10,10 @@ macro(KMEDIAPLAYER_EXECUTABLE_TESTS)
     endforeach()
 endmacro()
 
-macro(KMEDIAPLAYER_UNIT_TESTS)
-    foreach(_testname ${ARGN})
-        kmediaplayer_executable_tests(${_testname})
-        target_link_libraries(${_testname} Qt5::Test)
-        add_test(kmediaplayer-${_testname} ${_testname})
-        ecm_mark_as_test(${_testname})
-    endforeach()
-endmacro()
-
-kmediaplayer_unit_tests(
-   playertest
-   viewtest
+ecm_add_tests(
+   playertest.cpp
+   viewtest.cpp
+   NAME_PREFIX "kmediaplayer-"
+   LINK_LIBRARIES Qt5::Test
 )
 
