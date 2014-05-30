@@ -7,6 +7,10 @@ Interface for media player KParts
 KMediaPlayer builds on the KParts framework to provide a common interface for
 KParts that can play media files.
 
+This framework is a porting aid. It is not recommended for new projects, and
+existing projects that use it are advised to port away from it, and use plain
+KParts instead.
+
 
 ## Usage
 
@@ -47,5 +51,5 @@ instantiated with
 
 - Home page: <https://projects.kde.org/projects/frameworks/kmediaplayer>
 - Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
-- IRC channel: #kde-devel on Freenode
+- IRC channel: \#kde-devel on Freenode
 - Git repository: <https://projects.kde.org/projects/frameworks/kmediaplayer/repository>
