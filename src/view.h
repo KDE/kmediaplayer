@@ -30,63 +30,143 @@
 namespace KMediaPlayer
 {
 
-/** View is part of the user interface of a Player. */
+/**
+ * A user interface to control a Player object.
+ *
+ * Player::view() should be used to access an instance of this class.
+ */
 class KMEDIAPLAYER_EXPORT View : public QWidget
 {
     Q_OBJECT
     Q_FLAGS(Button Buttons)
+    /**
+     * The controls that are displayed by the interface.
+     */
     Q_PROPERTY(Buttons buttons READ buttons WRITE setButtons NOTIFY buttonsChanged)
+    /**
+     * The widget that displays video output.
+     *
+     * This may be 0 if video output is not supported.
+     */
     Q_PROPERTY(QWidget* videoWidget READ videoWidget)
 
 public:
-    /** Your typical QWidget constructor. */
+    /**
+     * Creates the user interface widget.
+     *
+     * @param parent  The parent widget.
+     */
     explicit View(QWidget *parent);
+    /**
+     * Destroys all related resources (but not the player object).
+     */
     virtual ~View();
 
-    /** The Possible buttons that can appear in the UI. */
+    /** The controls that can appear in the interface. */
     enum Button {
-        /** Button that connects to Player::play */
+        /**
+         * A control to start playback.
+         *
+         * @see Player::play()
+         */
         Play = 1,
-        /** Button that connects to Player::stop */
+        /**
+         * A control to stop playback.
+         *
+         * @see Player::stop()
+         */
         Stop = 2,
-        /** Button that connects to Player::pause */
+        /**
+         * A control to pause playback.
+         *
+         * @see Player::pause()
+         */
         Pause = 4,
-        /** A seeker that interfaces with Player::seek */
+        /**
+         * A control to adjust the playback position.
+         *
+         * @see Player::seek()
+         */
         Seeker = 8,
-        /** Show all buttons. */
+        /**
+         * All controls.
+         */
         All = 255
     };
     Q_DECLARE_FLAGS(Buttons, Button)
 
-    /** Return which buttons are being displayed. */
+    /**
+     * Returns which buttons are being displayed.
+     */
     Buttons buttons();
 
-    /** Return the QWidget in which video is displayed.
-        May Return 0L if there is none. */
+    /**
+     * Returns the widget used to display video output.
+     *
+     * May return 0 if video output is not supported.
+     */
     QWidget *videoWidget();
 
 public Q_SLOTS:
-    /** Set which buttons to display. See Button. */
-    void setButtons(Buttons Buttons);
+    /**
+     * Set the controls to display.
+     *
+     * @param buttons  A ORed combination of buttons to display.
+     */
+    void setButtons(Buttons buttons);
 
-    /** Returns if a particular button is being displayed. */
+    /**
+     * Queries whether a particular control is being displayed.
+     *
+     * @param button  The control to query.
+     */
     bool button(Button button);
-    /** Display a particular button. */
+    /**
+     * Display a control.
+     *
+     * If the control is already displayed, this has no effect. Otherwise, it
+     * will be added to the set of controls to be displayed.
+     *
+     * @param button  The control to display.
+     */
     void showButton(Button button);
-    /** Stop displaying a particular button. */
+    /**
+     * Stop displaying a control.
+     *
+     * If the control is not already displayed, this has no effect. Otherwise,
+     * it will be removed from the set of controls to be displayed.
+     *
+     * @param button  The control to stop displaying.
+     */
     void hideButton(Button button);
-    /** Toggle the display of a particular button. */
+    /**
+     * Toggle the display of a control.
+     *
+     * If the control is not already displayed, it will be added to the set of
+     * controls to be displayed. Otherwise, it will be removed from that set.
+     *
+     * @param button  The control to toggle.
+     */
     void toggleButton(Button button);
 
 Q_SIGNALS:
-    /** Emitted when the set of displayed buttons changes. */
+    /**
+     * Indicates that the value returned by buttons() has changed.
+     *
+     * Subclasses should connect to this signal to update the set of controls
+     * they display.
+     *
+     * @param buttons  The new value.
+     */
     void buttonsChanged(KMediaPlayer::View::Buttons buttons);
 
 protected:
-    /** The implementing view should set the widget in which
-        the video will be displayed. KMediaPlayer users may
-        reparent() it to somewhere else, for example.
-    */
+    /**
+     * Set the widget used to display video output.
+     *
+     * This should normally be created with this object as the parent, but users
+     * of this object may use QWidget::setParent(QWidget*) to move it elsewhere.
+     */
     void setVideoWidget(QWidget *videoWidget);
 
 private:

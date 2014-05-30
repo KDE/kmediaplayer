@@ -29,112 +29,220 @@
 
 #include "kmediaplayer_export.h"
 
-/** KMediaPlayer contains an interface to reusable media player components.
-*/
+/**
+ * An interface for media playback parts.
+ */
 namespace KMediaPlayer
 {
 
-/** Player is the center of the KMediaPlayer interface.   It provides all of
- * the necessary media player operations, and optionally provides the GUI to
- * control them.
+/**
+ * KPart interface to allow controlling and querying playback of a media track.
  *
- * There are two servicetypes for Player:  KMediaPlayer/Player and
- * KMediaPlayer/Engine.  KMediaPlayer/Player provides a widget (accessable
- * through view as well as XML GUI KActions.  KMediaPlayer/Engine omits
- * the user interface facets, for those who wish to provide their own
- * interface.
+ * This class provides methods to control playback of a single media track, as
+ * well as providing information on the current playback state. It can
+ * optionally provide access to a user interface that can be displayed to the
+ * user.
+ *
+ * There are two servicetypes for this KParts interface:  KMediaPlayer/Player
+ * and KMediaPlayer/Engine. KMediaPlayer/Player provides a user interface (see
+ * view()), while KMediaPlayer/Engine just provides direct control via this
+ * class.
  */
 class KMEDIAPLAYER_EXPORT Player : public KParts::ReadOnlyPart
 {
     Q_OBJECT
     Q_ENUMS(State)
+    /**
+     * Whether the length property is valid.
+     *
+     * Not all media tracks have a length (for example, some streams are
+     * continuous).
+     */
     Q_PROPERTY(bool hasLength READ hasLength)
+    /**
+     * The length of the media track in milliseconds.
+     *
+     * The value is undefined if hasLength is @c false.
+     */
     Q_PROPERTY(qlonglong length READ length)
+    /**
+     * Whether playback should loop.
+     *
+     * As this interface has no concept of a playlist, this indicates
+     * whether the current media track will play repeatedly.
+     */
     Q_PROPERTY(bool looping READ isLooping WRITE setLooping)
+    /**
+     * The position in the media track in milliseconds.
+     */
     Q_PROPERTY(qlonglong position READ position)
+    /**
+     * Whether seek() can be expected to work on the current media track.
+     *
+     * Some streams cannot be seeked.
+     */
     Q_PROPERTY(bool seekable READ isSeekable)
+    /**
+     * The current state of the player.
+     */
     Q_PROPERTY(State state READ state WRITE setState NOTIFY stateChanged)
 
 public:
-    /** This constructor is what to use when no GUI is required, as in the
-     * case of a KMediaPlayer/Engine.
+    /**
+     * Constructs a Player instance with no associated GUI.
+     *
+     * This should be used when a KMediaPlayer/Engine is requested.
      */
     explicit Player(QObject *parent);
 
-    /** This constructor is what to use when a GUI is required, as in the
-     * case of a KMediaPlayer/Player.
+    /**
+     * Constructs a Player instance with a GUI.
+     *
+     * This should be used when a KMediaPlayer/Player is requested.
      */
     Player(QWidget *parentWidget, const char *widgetName, QObject *parent);
 
+    /**
+     * Cleans up any associated resources.
+     *
+     * This should not explicitly delete any widget returned by view(): if it
+     * has been reparented, it is up to the caller to dispose of it properly.
+     */
     virtual ~Player();
 
-    /** A convenience function returning a pointer to the View for this
-     * Player, or 0 if this Player has no GUI.
+    /**
+     * Returns the widget associated with this player.
+     *
+     * If the part's service type is KMediaPlayer/Player, this should not return
+     * 0. However, if the part's service is just KMediaPlayer/Engine, this may
+     * return 0.
+     *
+     * @returns  A widget to view and control this Player instance, or 0 if
+     *           there is no GUI.
      */
     virtual View *view() = 0;
 
 public Q_SLOTS:
-    /** Pause playback of the media track.*/
+    /**
+     * Pauses playback of the media track.
+     *
+     * If the media track is not already paused, this should have no effect.
+     */
     virtual void pause() = 0;
 
-    /** Begin playing the media track.*/
+    /**
+     * Starts playing the media track.
+     *
+     * If the media track is already playing, this should have no effect.
+     */
     virtual void play() = 0;
 
-    /** Stop playback of the media track and return to the beginning.*/
+    /**
+     * Stops playback of the media track and returns it to the beginning.
+     */
     virtual void stop() = 0;
 
-    /** Move the current playback position to the specified time in
-     * milliseconds, if the track is seekable.  Some streams may not be
-     * seeked.
+    /**
+     * Moves the current playback position.
+     *
+     * This will have no effect if isSeekable() is @c false.
+     *
+     * @param msec  The new playback position in milliseconds.
      */
     virtual void seek(qlonglong msec) = 0;
 public:
-    /** Returns whether the current track honors seek requests.*/
+    /**
+     * Returns whether seek() can be expected to work on the current media
+     * track.
+     */
     virtual bool isSeekable() const = 0;
 
-    /** Returns the current playback position in the track.*/
+    /**
+     * Returns the current playback position in milliseconds.
+     */
     virtual qlonglong position() const = 0;
 
-    /** Returns whether the current track has a length.  Some streams are
-     * endless, and do not have one. */
+    /**
+     * Returns whether the current media track has a length.
+     */
     virtual bool hasLength() const = 0;
 
-    /** Returns the length of the current track.*/
+    /**
+     * Returns the length of the current media track.
+     *
+     * The returned value is undefined if hasLength() returns @c false.
+     */
     virtual qlonglong length() const = 0;
 
 public Q_SLOTS:
-    /** Set whether the Player should continue playing at the beginning of
-     * the track when the end of the track is reached.
+    /**
+     * Sets whether playback should loop.
+     *
+     * @param on  If @c true, playback will resume from the start of the
+     *            track when the end is reached; if @c false it will not.
      */
     void setLooping(bool on);
 public:
-    /** Return the current looping state. */
+    /**
+     * Returns whether playback will loop.
+     */
     bool isLooping() const;
 Q_SIGNALS:
-    /** Emitted when the looping state is changed. */
+    /**
+     * Indicates that the value of isLooping() has changed.
+     *
+     * @param isLooping  The new value.
+     */
     void loopingChanged(bool isLooping);
 
 public:
-    /** The possible states of the Player */
+    /**
+     * The possible states of the player.
+     */
     enum State {
-        /** No track is loaded. */
+        /**
+         * No track is loaded.
+         *
+         * Most functions will not work in this state.
+         */
         Empty,
-        /** Not playing. */
+        /**
+         * A track is loaded, but playback is stopped.
+         *
+         * The position should always be 0 in this state. Playback will start
+         * from the beginning when play() is called.
+         */
         Stop,
-        /** Playing is temporarily suspended. */
+        /**
+         * Playback is temporarily suspended.
+         *
+         * Playback will resume from the current position when play() is called.
+         */
         Pause,
-        /** The media is currently being output. */
+        /**
+         * The media is currently being output.
+         */
         Play
     };
-    /** Return the current state of the player. */
+    /**
+     * Returns the current state of the player.
+     */
     State state() const;
 Q_SIGNALS:
-    /** Emitted when the state changes. */
+    /**
+     * Indicates that the value returned by state() has changed.
+     *
+     * @param newState  The new value.
+     */
     void stateChanged(KMediaPlayer::Player::State newState);
 
 protected Q_SLOTS:
-    /** Implementers use this to control what users see as the current
-     * state.*/
+    /**
+     * Sets the current state.
+     *
+     * This allows implementors to alter the playback state. This will emit the
+     * stateChanged() signal as appropriate.
+     */
     void setState(State state);
 
 protected:
