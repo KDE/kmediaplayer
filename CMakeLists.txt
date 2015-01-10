@@ -32,7 +32,7 @@ ecm_setup_version(${KF5_VERSION}
    SOVERSION 5)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kmediaplayer_version.h
-        DESTINATION ${KF5_INCLUDE_INSTALL_DIR}
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}
         COMPONENT Devel)
 
 
@@ -61,7 +61,7 @@ add_subdirectory(autotests)
 #
 # Config.cmake stuff
 #
-set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KF5MediaPlayer")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5MediaPlayer")
 ecm_configure_package_config_file(
    "${CMAKE_CURRENT_SOURCE_DIR}/KF5MediaPlayerConfig.cmake.in"
    "${CMAKE_CURRENT_BINARY_DIR}/KF5MediaPlayerConfig.cmake"

@@ -9,7 +9,7 @@ generate_export_header(KF5MediaPlayer BASE_NAME KMediaPlayer)
 add_library(KF5::MediaPlayer ALIAS KF5MediaPlayer)
 
 # Apps must include <KMediaPlayer/File> or <kmediaplayer/file.h>
-target_include_directories(KF5MediaPlayer INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KMediaPlayer>")
+target_include_directories(KF5MediaPlayer INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KMediaPlayer>")
 
 target_link_libraries(KF5MediaPlayer PUBLIC
    Qt5::Widgets
@@ -32,7 +32,7 @@ ecm_generate_headers(KMediaPlayer_CamelCase_HEADERS
   PREFIX KMediaPlayer
   REQUIRED_HEADERS KMediaPlayer_HEADERS
 )
-install(FILES ${KMediaPlayer_CamelCase_HEADERS} DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KMediaPlayer/KMediaPlayer COMPONENT Devel)
+install(FILES ${KMediaPlayer_CamelCase_HEADERS} DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KMediaPlayer/KMediaPlayer COMPONENT Devel)
 
 install(TARGETS KF5MediaPlayer
         EXPORT KF5MediaPlayerTargets
@@ -41,15 +41,15 @@ install(TARGETS KF5MediaPlayer
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kmediaplayer_export.h
   ${KMediaPlayer_HEADERS}
-  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KMediaPlayer/kmediaplayer
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KMediaPlayer/kmediaplayer
   COMPONENT Devel
 )
 
 install(FILES
    kmediaplayerengine.desktop
    kmediaplayer.desktop
-   DESTINATION ${SERVICETYPES_INSTALL_DIR})
+   DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
 install(FILES
    org.kde.KMediaPlayer.xml
-   DESTINATION ${DBUS_INTERFACES_INSTALL_DIR}
+   DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR}
    RENAME kf5_org.kde.KMediaPlayer.xml)
