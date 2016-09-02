@@ -35,27 +35,35 @@ class TestPlayer : public KMediaPlayer::Player
 public:
     TestPlayer(QObject *parent) : Player(parent) {}
 
-    KMediaPlayer::View *view()
+    KMediaPlayer::View *view() Q_DECL_OVERRIDE
     {
         return 0;
     }
-    void pause() {}
-    void play() {}
-    void stop() {}
-    void seek(qlonglong) {}
-    bool isSeekable() const
+    void pause() Q_DECL_OVERRIDE
+    {
+    }
+    void play() Q_DECL_OVERRIDE
+    {
+    }
+    void stop() Q_DECL_OVERRIDE
+    {
+    }
+    void seek(qlonglong) Q_DECL_OVERRIDE
+    {
+    }
+    bool isSeekable() const Q_DECL_OVERRIDE
     {
         return false;
     }
-    qlonglong position() const
+    qlonglong position() const Q_DECL_OVERRIDE
     {
         return 0L;
     }
-    bool hasLength() const
+    bool hasLength() const Q_DECL_OVERRIDE
     {
         return false;
     }
-    qlonglong length() const
+    qlonglong length() const Q_DECL_OVERRIDE
     {
         return 0L;
     }
