@@ -22,7 +22,7 @@ include(KDECMakeSettings)
 include(GenerateExportHeader)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
-include(ECMPackageConfigHelpers)
+include(CMakePackageConfigHelpers)
 
 
 #
@@ -65,7 +65,7 @@ add_subdirectory(autotests)
 # Config.cmake stuff
 #
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5MediaPlayer")
-ecm_configure_package_config_file(
+configure_package_config_file(
    "${CMAKE_CURRENT_SOURCE_DIR}/KF5MediaPlayerConfig.cmake.in"
    "${CMAKE_CURRENT_BINARY_DIR}/KF5MediaPlayerConfig.cmake"
    INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR})
