@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(KMediaPlayer)
+set(KF5_VERSION "5.30.0") # handled by release scripts
+set(KF5_DEP_VERSION "5.29.0") # handled by release scripts
+project(KMediaPlayer VERSION ${KF5_VERSION})
 
 
 #
@@ -17,19 +19,16 @@ include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 
-
 include(GenerateExportHeader)
 include(ECMSetupVersion)
 include(ECMGenerateHeaders)
 include(ECMPackageConfigHelpers)
 
-set(KF5_VERSION "5.30.0") # handled by release scripts
-set(KF5_DEP_VERSION "5.29.0") # handled by release scripts
 
 #
 # Version info
 #
-ecm_setup_version(${KF5_VERSION}
+ecm_setup_version(PROJECT
    VARIABLE_PREFIX KMEDIAPLAYER
    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kmediaplayer_version.h"
    PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5MediaPlayerConfigVersion.cmake"
