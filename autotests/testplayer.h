@@ -37,7 +37,7 @@ public:
 
     KMediaPlayer::View *view() Q_DECL_OVERRIDE
     {
-        return 0;
+        return nullptr;
     }
     void pause() Q_DECL_OVERRIDE
     {

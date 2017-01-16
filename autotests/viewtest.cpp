@@ -40,7 +40,7 @@ private Q_SLOTS:
     void cleanup()
     {
         delete view;
-        view = 0;
+        view = nullptr;
     }
 
     void testParent();
@@ -61,7 +61,7 @@ void ViewTest::testParent()
 
 void ViewTest::testDefaultVideoWidget()
 {
-    QCOMPARE(view->videoWidget(), static_cast<QWidget *>(0));
+    QCOMPARE(view->videoWidget(), static_cast<QWidget *>(nullptr));
 }
 
 void ViewTest::testSetVideoWidget()
@@ -71,8 +71,8 @@ void ViewTest::testSetVideoWidget()
     view->setVideoWidgetWrapper(widget.data());
     QCOMPARE(view->videoWidget(), widget.data());
 
-    view->setVideoWidgetWrapper(0);
-    QCOMPARE(view->videoWidget(), static_cast<QWidget *>(0));
+    view->setVideoWidgetWrapper(nullptr);
+    QCOMPARE(view->videoWidget(), static_cast<QWidget *>(nullptr));
 }
 
 void ViewTest::testSetButtons()

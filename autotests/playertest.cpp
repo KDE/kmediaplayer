@@ -39,7 +39,7 @@ private Q_SLOTS:
     void cleanup()
     {
         delete player;
-        player = 0;
+        player = nullptr;
     }
 
     void testParent();

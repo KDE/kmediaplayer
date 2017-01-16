@@ -27,7 +27,7 @@ class KMediaPlayer::View::Private
 {
 public:
     Private()
-        : videoWidget(0L)
+        : videoWidget(nullptr)
         , currentButtons(All)
     {
         if (!buttonEnumRegistered) {
