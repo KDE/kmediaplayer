@@ -10,7 +10,7 @@
 #ifndef KMEDIAPLAYERADAPTOR_H_19781146507443
 #define KMEDIAPLAYERADAPTOR_H_19781146507443
 
-#include <QtCore/QObject>
+#include <QObject>
 #include <QDBusAbstractAdaptor>
 template<class T> class QList;
 template<class Key, class Value> class QMap;
