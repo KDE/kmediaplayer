@@ -56,7 +56,7 @@ find_package(KF5XmlGui ${KF5_DEP_VERSION} REQUIRED)
 include_directories (
    ${CMAKE_CURRENT_SOURCE_DIR}/src
    ${CMAKE_CURRENT_BINARY_DIR}/src)
-
+add_definitions(-DQT_NO_FOREACH)
 add_subdirectory(src)
 if (BUILD_TESTING)
     add_subdirectory(autotests)
