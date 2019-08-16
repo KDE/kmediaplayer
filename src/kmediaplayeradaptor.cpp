@@ -8,13 +8,7 @@
  */
 
 #include "kmediaplayeradaptor_p.h"
-#include <QArgument>
-#include <QByteRef>
-#include <QList>
-#include <QMap>
 #include <QString>
-#include <QStringList>
-#include <QVariant>
 
 /*
  * Implementation of adaptor class KMediaPlayerAdaptor
