@@ -58,7 +58,6 @@ include_directories (
    ${CMAKE_CURRENT_BINARY_DIR}/src)
 add_definitions(-DQT_NO_FOREACH)
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050d00)
-add_definitions(-DQT_DEPRECATED_WARNINGS_SINCE=0x060000)
 add_subdirectory(src)
 if (BUILD_TESTING)
     add_subdirectory(autotests)
