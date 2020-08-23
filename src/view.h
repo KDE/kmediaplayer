@@ -174,10 +174,11 @@ private:
     Private *d;
 };
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(View::Buttons)
+
 }
 
 Q_DECLARE_METATYPE(KMediaPlayer::View::Button)
 Q_DECLARE_METATYPE(KMediaPlayer::View::Buttons)
-Q_DECLARE_OPERATORS_FOR_FLAGS(KMediaPlayer::View::Buttons)
 
 #endif
