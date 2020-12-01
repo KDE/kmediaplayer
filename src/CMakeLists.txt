@@ -46,8 +46,8 @@ install(FILES
 )
 
 install(FILES
-   kmediaplayerengine.desktop
-   kmediaplayer.desktop
+   kmediaplayer-engine.desktop
+   kmediaplayer-player.desktop
    DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
 install(FILES
    org.kde.KMediaPlayer.xml
