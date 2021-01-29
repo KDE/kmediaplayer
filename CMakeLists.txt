@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 
-set(KF5_VERSION "5.79.0") # handled by release scripts
-set(KF5_DEP_VERSION "5.79.0") # handled by release scripts
-project(KMediaPlayer VERSION ${KF5_VERSION})
+set(KF_VERSION "5.79.0") # handled by release scripts
+set(KF_DEP_VERSION "5.79.0") # handled by release scripts
+project(KMediaPlayer VERSION ${KF_VERSION})
 
 
 #
@@ -46,8 +46,8 @@ set(REQUIRED_QT_VERSION 5.14.0)
 find_package(Qt5DBus ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 find_package(Qt5Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 
-find_package(KF5Parts ${KF5_DEP_VERSION} REQUIRED)
-find_package(KF5XmlGui ${KF5_DEP_VERSION} REQUIRED)
+find_package(KF5Parts ${KF_DEP_VERSION} REQUIRED)
+find_package(KF5XmlGui ${KF_DEP_VERSION} REQUIRED)
 
 
 #
