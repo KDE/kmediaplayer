@@ -67,7 +67,7 @@ void KMediaPlayer::View::setButtons(Buttons buttons)
 {
     if (buttons != d->currentButtons) {
         d->currentButtons = buttons;
-        emit buttonsChanged(buttons);
+        Q_EMIT buttonsChanged(buttons);
     }
 }
 

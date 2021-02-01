@@ -66,7 +66,7 @@ void KMediaPlayer::Player::setLooping(bool b)
 {
     if (b != d->currentLooping) {
         d->currentLooping = b;
-        emit loopingChanged(b);
+        Q_EMIT loopingChanged(b);
     }
 }
 
@@ -79,7 +79,7 @@ void KMediaPlayer::Player::setState(State s)
 {
     if (s != d->currentState) {
         d->currentState = s;
-        emit stateChanged(s);
+        Q_EMIT stateChanged(s);
     }
 }
 
