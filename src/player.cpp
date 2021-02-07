@@ -24,12 +24,12 @@
 #include "player.h"
 #include "kmediaplayeradaptor_p.h"
 
-class KMediaPlayer::Player::Private
+class KMediaPlayer::PlayerPrivate
 {
 public:
-    Private()
+    PlayerPrivate()
         : currentLooping(false)
-        , currentState(Empty)
+        , currentState(Player::Empty)
     {
         if (!stateEnumRegistered) {
             stateEnumRegistered = qRegisterMetaType<KMediaPlayer::Player::State>("KMediaPlayer::Player::State");
@@ -37,30 +37,25 @@ public:
     }
 
     bool currentLooping;
-    State currentState;
+    Player::State currentState;
 
     static bool stateEnumRegistered;
 };
-bool KMediaPlayer::Player::Private::stateEnumRegistered = false;
+bool KMediaPlayer::PlayerPrivate::stateEnumRegistered = false;
 
 KMediaPlayer::Player::Player(QWidget *, const char *, QObject *parent)
-    : KParts::ReadOnlyPart(parent)
-    , d(new Private())
+    : Player(parent)
 {
-    (void)new KMediaPlayerAdaptor(this);
 }
 
 KMediaPlayer::Player::Player(QObject *parent)
     : KParts::ReadOnlyPart(parent)
-    , d(new Private())
+    , d(new PlayerPrivate())
 {
     (void)new KMediaPlayerAdaptor(this);
 }
 
-KMediaPlayer::Player::~Player()
-{
-    delete d;
-}
+KMediaPlayer::Player::~Player() = default;
 
 void KMediaPlayer::Player::setLooping(bool b)
 {

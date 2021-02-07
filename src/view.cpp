@@ -23,12 +23,12 @@
 
 #include "view.h"
 
-class KMediaPlayer::View::Private
+class KMediaPlayer::ViewPrivate
 {
 public:
-    Private()
+    ViewPrivate()
         : videoWidget(nullptr)
-        , currentButtons(All)
+        , currentButtons(View::All)
     {
         if (!buttonEnumRegistered) {
             buttonEnumRegistered = qRegisterMetaType<KMediaPlayer::View::Button>("KMediaPlayer::View::Button");
@@ -39,24 +39,21 @@ public:
     }
 
     QWidget *videoWidget;
-    Buttons currentButtons;
+    View::Buttons currentButtons;
 
     static bool buttonEnumRegistered;
     static bool buttonsFlagsRegistered;
 };
-bool KMediaPlayer::View::Private::buttonEnumRegistered = false;
-bool KMediaPlayer::View::Private::buttonsFlagsRegistered = false;
+bool KMediaPlayer::ViewPrivate::buttonEnumRegistered = false;
+bool KMediaPlayer::ViewPrivate::buttonsFlagsRegistered = false;
 
 KMediaPlayer::View::View(QWidget *parent)
     : QWidget(parent)
-    , d(new Private())
+    , d(new ViewPrivate())
 {
 }
 
-KMediaPlayer::View::~View()
-{
-    delete d;
-}
+KMediaPlayer::View::~View() = default;
 
 KMediaPlayer::View::Buttons KMediaPlayer::View::buttons()
 {

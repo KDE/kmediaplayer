@@ -27,6 +27,8 @@
 #include <QWidget>
 #include "kmediaplayer_export.h"
 
+#include <memory>
+
 namespace KMediaPlayer
 {
 
@@ -170,8 +172,7 @@ protected:
     void setVideoWidget(QWidget *videoWidget);
 
 private:
-    class Private;
-    Private *d;
+    std::unique_ptr<class ViewPrivate> const d;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(View::Buttons)

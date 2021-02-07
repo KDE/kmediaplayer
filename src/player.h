@@ -29,6 +29,8 @@
 
 #include "kmediaplayer_export.h"
 
+#include <memory>
+
 /**
  * An interface for media playback parts.
  */
@@ -251,8 +253,7 @@ protected:
     using KXMLGUIClient::stateChanged;
 
 private:
-    class Private;
-    Private *d;
+    std::unique_ptr<class PlayerPrivate> const d;
 };
 
 }
