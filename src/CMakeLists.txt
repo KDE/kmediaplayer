@@ -19,7 +19,7 @@ target_link_libraries(KF5MediaPlayer PRIVATE
    KF5::XmlGui
 )
 set_target_properties(KF5MediaPlayer PROPERTIES
-   VERSION ${KMEDIAPLAYER_VERSION_STRING}
+   VERSION ${KMEDIAPLAYER_VERSION}
    SOVERSION ${KMEDIAPLAYER_SOVERSION}
    EXPORT_NAME MediaPlayer
 )
