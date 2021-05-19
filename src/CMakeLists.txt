@@ -1,12 +1,13 @@
-set(kmediaplayer_LIB_SRCS
+add_library(KF5MediaPlayer)
+add_library(KF5::MediaPlayer ALIAS KF5MediaPlayer)
+
+target_sources(KF5MediaPlayer PRIVATE
    player.cpp
    view.cpp
    kmediaplayeradaptor.cpp
 )
 
-add_library(KF5MediaPlayer ${kmediaplayer_LIB_SRCS})
 generate_export_header(KF5MediaPlayer BASE_NAME KMediaPlayer)
-add_library(KF5::MediaPlayer ALIAS KF5MediaPlayer)
 
 # Apps must include <KMediaPlayer/File> or <kmediaplayer/file.h>
 target_include_directories(KF5MediaPlayer INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KMediaPlayer>")
