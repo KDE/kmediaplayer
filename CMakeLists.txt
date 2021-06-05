@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 set(KF_VERSION "5.83.0") # handled by release scripts
-set(KF_DEP_VERSION "5.82.0") # handled by release scripts
+set(KF_DEP_VERSION "5.83.0") # handled by release scripts
 project(KMediaPlayer VERSION ${KF_VERSION})
 
 
@@ -9,7 +9,7 @@ project(KMediaPlayer VERSION ${KF_VERSION})
 # CMake stuff from ECM
 #
 include(FeatureSummary)
-find_package(ECM 5.82.0  NO_MODULE)
+find_package(ECM 5.83.0  NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://commits.kde.org/extra-cmake-modules")
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
