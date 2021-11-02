@@ -49,7 +49,7 @@ class KMediaPlayerAdaptor: public QDBusAbstractAdaptor
                 "")
 public:
     KMediaPlayerAdaptor(QObject *parent);
-    virtual ~KMediaPlayerAdaptor();
+    ~KMediaPlayerAdaptor() override;
 
 public: // PROPERTIES
     Q_PROPERTY(bool hasLength READ hasLength)

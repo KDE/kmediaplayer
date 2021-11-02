@@ -110,7 +110,7 @@ public:
      * This should not explicitly delete any widget returned by view(): if it
      * has been reparented, it is up to the caller to dispose of it properly.
      */
-    virtual ~Player();
+    ~Player() override;
 
     /**
      * Returns the widget associated with this player.

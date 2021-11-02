@@ -62,7 +62,7 @@ public:
     /**
      * Destroys all related resources (but not the player object).
      */
-    virtual ~View();
+    ~View() override;
 
     /** The controls that can appear in the interface. */
     enum Button {
