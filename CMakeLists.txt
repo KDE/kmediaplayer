@@ -35,7 +35,7 @@ ecm_setup_version(PROJECT
    SOVERSION 5)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kmediaplayer_version.h
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KMediaPlayer
         COMPONENT Devel)
 
 
