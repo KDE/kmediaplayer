@@ -1,2 +1,0 @@
-# This file is an auto-generated file with a private header
-EXCLUDE_PATTERNS += */src/kmediaplayeradaptor.cpp
