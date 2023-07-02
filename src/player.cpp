@@ -83,3 +83,4 @@ KMediaPlayer::Player::State KMediaPlayer::Player::state() const
     return d->currentState;
 }
 
+#include "moc_player.cpp"
