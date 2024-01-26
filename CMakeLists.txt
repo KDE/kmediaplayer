@@ -90,4 +90,5 @@ install(EXPORT KF5MediaPlayerTargets
 #
 # Feature summary
 #
-feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
+include(ECMFeatureSummary)
+ecm_feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
